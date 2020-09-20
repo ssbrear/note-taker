@@ -14,7 +14,7 @@ This project was intended to create an online list that is deployed to heroku. I
 * [License](#license)
 
 ## Installation
-No installation necessary, the app is deployed to ![link](https://ex-notes.herokuapp.com)
+No installation necessary, the app is deployed to https://ex-notes.herokuapp.com/
 
 ## Usage
 Click the 'Get Started' button on the homepage to be navigated to a page where you can maintain a list. Create a title that will be displayed in a list on the left-hand side, as well as a description that will be displayed upon clicking this note. Click the floppy-disk icon in the top right upon entering information in both fields to save the note. It is now possible to view your note by clicking on the title on the left, and it is possible to create a new note by clicking on the pen icon on the top right. Click the trash can icon next to a note to delete it.
