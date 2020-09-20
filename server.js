@@ -50,7 +50,7 @@ app.post("/api/notes", (req, res) => {
 });
 
 // API request that deletes an existing note
-app.delete("api/notes/:id", (req, res) => {
+app.delete("/api/notes/:id", (req, res) => {
   // Retrieves ID
   let ID = req.params.id;
   // Retrieves Data
