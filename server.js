@@ -54,9 +54,10 @@ app.delete("api/notes/:id", (req, res) => {
   // Retrieves ID
   let ID = req.params.id;
   // Retrieves Data
-  const data = JSON.parse(fs.readFileSync("./db/db.json"));
+  let data = JSON.parse(fs.readFileSync("./db/db.json"));
   // Finds the index of the note to be deleted in the database
-  let dbIndex = notesJson.map((item) => item.id).indexOf(ID);
-  console.log(dbIndex);
-  
+  let dbIndex = data.map((item) => item.id).indexOf(ID);
+  data.splice(dbIndex, 1);
+  fs.writeFile("./db/db.json", JSON.stringify(data, null, 4));
+  return res.send(data);
 });
