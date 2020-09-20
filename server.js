@@ -18,10 +18,10 @@ app.listen(PORT, () => {
 
 // GET requests that load the proper html pages
 app.get("/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/notes.html"));
+  res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 // API requests that deal with the retrieving and sending of note data
@@ -38,7 +38,7 @@ app.post("/api/notes", (req, res) => {
 
   // Updates the database and returns the new data
   data.push(req.body);
-  fs.writeFile(
+  fs.writeFileSync(
     path.join(__dirname, "db/db.json"),
     JSON.stringify(data, null, 4),
     (err) => {
@@ -58,6 +58,6 @@ app.delete("/api/notes/:id", (req, res) => {
   // Finds the index of the note to be deleted in the database
   let dbIndex = data.map((item) => item.id).indexOf(ID);
   data.splice(dbIndex, 1);
-  fs.writeFile("./db/db.json", JSON.stringify(data, null, 4));
+  fs.writeFileSync("./db/db.json", JSON.stringify(data, null, 4));
   return res.send(data);
 });
