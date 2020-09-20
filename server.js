@@ -15,18 +15,17 @@ app.use(express.json());
 app.listen(PORT, () => {
   console.log("Running at http://localhost:" + PORT);
 });
-
 // GET requests that load the proper html pages
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "public/notes.html"));
 });
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
-});
-
 // API requests that deal with the retrieving and sending of note data
 app.get("/api/notes", (req, res) => {
   return res.json(JSON.parse(fs.readFileSync("./db/db.json")));
+});
+// Defaults to index if no other get has been processed
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 app.post("/api/notes", (req, res) => {
   // Retrieves Data
@@ -48,7 +47,6 @@ app.post("/api/notes", (req, res) => {
   );
   return res.send(data);
 });
-
 // API request that deletes an existing note
 app.delete("/api/notes/:id", (req, res) => {
   // Retrieves ID
